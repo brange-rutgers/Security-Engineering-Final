@@ -9,18 +9,6 @@ bool Node::addPubKey(RSA::PublicKey key){
 	}
 	return 0;
 }
-bool Node::removeKey(RSA::PublicKey key){
-	int temp=getVectorSize();
-	for(int i=0; i<getVectorSize(); ++i){
-		if(keys.at(i)==key){
-			keys.erase(keys.begin()+i);
-			if(temp>getVectorSize()){
-				return 1;
-			}
-		}
-	}
-	return 0;
-}
 
 bool Node::removeKeyIndex(int index){
 	int temp=getVectorSize();
@@ -36,10 +24,9 @@ int Node::getVectorSize(void){
 }
 
 RSA::PublicKey Node::getKey(int index){
-	if(index<getVectorSize()){
-		return keys.at(index);
-	}
-	return NULL;
+	return keys.at(index);
+	//very unsafe to out of range index
+	//however, RSA::PublicKey does not support a Null Key
 }
 
 std::string Node::getInput(void){
@@ -52,10 +39,11 @@ void Node::printOutput(std::string outp){
 	return;
 }
 
-void generateKeysRSA(int keyLength){
+void Node::generateKeysRSA(int keyLength){
+	AutoSeededRandomPool prng;
 	privKey.GenerateRandomWithKeySize(prng, keyLength);
 	RSA::PublicKey pubKey(privKey);
-	addKey(pubKey);
+	addPubKey(pubKey);
 }
 
 Integer Node::RSAencrypt(std::string message, RSA::PublicKey pubKey){
