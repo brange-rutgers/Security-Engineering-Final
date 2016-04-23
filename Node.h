@@ -8,15 +8,19 @@
 #include <crypto++/osrng.h>
 #include <crypto++/base64.h>
 #include <crypto++/files.h>
+#include <crypto++/modes.h>
 #include <random>
 #include <cmath>
 
 class Node
 {
 	private:
+	//keys and ports
 	std::vector<CryptoPP::RSA::PublicKey> keys;
 	int port;
 	CryptoPP::RSA::PrivateKey privKey;
+	CryptoPP::SecByteBlock aeskey;
+	byte iv[CryptoPP::AES::BLOCKSIZE];
 
 	public:
 	//RSA key access functions
@@ -34,8 +38,9 @@ class Node
 	CryptoPP::Integer RSAencrypt(std::string message, CryptoPP::RSA::PublicKey pubKey);
 	std::string RSAdecrypt(CryptoPP::Integer message);
 
-	//std::string 3DESencrypt(std::string message);
-	//std::string 3DESdecrypt(std::string message);
+	void generateKeysAES(void);
+	std::string AESencrypt(std::string message);
+	std::string AESdecrypt(std::string message);
 
 	//void sendPacket(char* message);
 	//char* recievePacket(void);
