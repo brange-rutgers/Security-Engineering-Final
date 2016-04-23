@@ -8,6 +8,8 @@
 #include <crypto++/osrng.h>
 #include <crypto++/base64.h>
 #include <crypto++/files.h>
+#include <random>
+#include <cmath>
 
 class Node
 {
@@ -42,6 +44,8 @@ class Node
 	//bool setPort(int port);
 	//int getPort(void);
 
+	//math
+	long long int largeRandom(void);
 	
 };
 

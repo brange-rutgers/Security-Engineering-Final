@@ -60,3 +60,13 @@ std::string Node::RSAdecrypt(Integer raw){
 	raw.Encode((byte *)recovered.data(), recovered.size());	
 	return recovered;
 }
+
+long long int Node::largeRandom(void){
+	//generator
+	std::random_device generator;
+	//generator function
+	std::mt19937_64 MerTwist(generator());
+	//distribution layout
+	std::uniform_int_distribution<long long int> distribution(0, std::llround(std::pow(2,64))-1);
+	return distribution(MerTwist);	
+}
