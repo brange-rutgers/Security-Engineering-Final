@@ -14,7 +14,7 @@
 
 class Node
 {
-	private:
+	public:
 	//keys and ports
 	std::vector<CryptoPP::RSA::PublicKey> keys;
 	int port;
@@ -22,7 +22,6 @@ class Node
 	CryptoPP::SecByteBlock aeskey;
 	byte iv[CryptoPP::AES::BLOCKSIZE];
 
-	public:
 	//RSA key access functions
 	bool addPubKey(CryptoPP::RSA::PublicKey key);
 	bool removeKeyIndex(int index);
