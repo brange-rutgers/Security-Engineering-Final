@@ -29,6 +29,12 @@ class Node
 	int getVectorSize(void);
 	CryptoPP::RSA::PublicKey getKey(int index);
 
+	//AES key returns
+	CryptoPP::SecByteBlock getSecByteBlock(void);
+	byte* getiv(void);
+	void setKeysAES(CryptoPP::SecByteBlock key1, byte key2[CryptoPP::AES::BLOCKSIZE]);
+	
+
 	//console input output
 	std::string getInput(void);
 	void printOutput(std::string outp);

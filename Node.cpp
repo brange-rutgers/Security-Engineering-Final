@@ -104,3 +104,24 @@ std::string Node::AESdecrypt(std::string message){
 	delete messagec;
 	return retme;
 }
+
+
+CryptoPP::SecByteBlock Node::getSecByteBlock(void){
+	return aeskey;
+}
+
+byte* Node::getiv(void){
+	return iv;
+}
+
+void Node::setKeysAES(SecByteBlock key1, byte key2[]){
+	aeskey=key1;
+	if(sizeof(key2)!=sizeof(iv)){
+		std::cout<<"error in aes key assignment\n\n";
+	}
+	for(int i=0; i<(sizeof(key2)/sizeof(key2[0])); ++i){
+		iv[i]=key2[i];
+	}
+	return;
+}
+
