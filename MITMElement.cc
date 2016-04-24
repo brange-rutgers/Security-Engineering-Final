@@ -5,15 +5,17 @@
 
 CLICK_DECLS
 
-MITMElement::MITMElement(){}
+MITMElement::MITMElement(){this->maxSize = 4048;}
 MITMElement::~MITMElement(){}
 
 int MITMElement::configure(Vector<String> &conf, ErrorHandler * errh)
 {
+	/*
 	if (cp_va_kparse(conf, this, errh, "MAXPACKETSIZE", cpkM, cpInteger, &maxSize, cpEnd) < 0)
 	{
-		return -1;
+		;//return -1;
 	}
+	*/
 	if (maxSize <= 0)
 	{
 		return errh->error("maxsize should be larger than 0");
@@ -24,6 +26,7 @@ int MITMElement::configure(Vector<String> &conf, ErrorHandler * errh)
 
 int get_port(int port, Packet *p)
 {
+	if (p == NULL)	return -1;
 	if (port == 0)	return 1;
 	if (port == 1)	return 0;
 	return -1;
@@ -51,7 +54,10 @@ void MITMElement::push(int port, Packet *p)
 		
 		if (output_port == -1 || output_packet->length() > maxSize)
 		{
-			p->kill();
+			if (p != output_packet)
+			{
+				p->kill();				
+			}
 			output_packet->kill();
 		}
 		else
