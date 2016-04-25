@@ -11,7 +11,7 @@ int status = IDLE;
 void simSwitch(){
 //initialize
 simNode.generateKeysRSA();
-	while (;;) {
+	while (true) {
 
 
 		switch (status)
@@ -123,7 +123,7 @@ void data_trans() {
 	send(DEVICE, packet);
 
 
-	while (;;) {
+	while (true) {
 
 
 		if (close_flag) {
