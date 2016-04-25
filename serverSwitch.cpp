@@ -8,22 +8,25 @@ enum states
 global Node deviceNode;
 int status = IDLE;
 
+void simSwitch(){
+//initialize
+deviceNode.generateKeysRSA();
+	while (;;) {
 
-while (;;) {
 
+		switch (status)
 
-	switch (status)
+			case: IDLE
+				idle();
+				break;
+			case: WAIT_FOR_VERIFY
+				wait_for_verify();
+				break;
+			case: DATA_TRANS
+				data_trans()
+				break;
 
-		case: IDLE
-			idle();
-			break;
-		case: WAIT_FOR_VERIFY
-			wait_for_verify();
-			break;
-		case: DATA_TRANS
-			data_trans()
-			break;
-
+	}
 }
 
 
