@@ -1,0 +1,17 @@
+standard tls implementation
+Request (with Options) ---->
+<---- RequestResponse
+<----- Server Cert
+------> client cert
+<----- premaster AES key (client cert encrypted)
+------> ready (encrypted with AES)	
+
+mim attack
+Request (with Options) ---->
+<---- RequestResponse
+<----- Server Cert 
+------> client cert    X
+	MIM ----> sim cert
+<----- premaster AES key (mim cert encrypted)
+	<------MIM premaster AES key (recrypt with device pub key)
+------> ready (encrypted with AES)
