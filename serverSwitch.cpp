@@ -11,7 +11,7 @@ int status = IDLE;
 void simSwitch(){
 //initialize
 deviceNode.generateKeysRSA();
-	while (;;) {
+	while (true) {
 
 
 		switch (status)
@@ -105,7 +105,7 @@ void data_trans() {
 
 
 
-	while (;;) {
+	while (true) {
 
 		char* packet = listen(PORT);
 
