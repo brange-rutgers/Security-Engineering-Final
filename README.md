@@ -21,6 +21,11 @@ To compile the demo, in the demo directory run g++ main.cpp Node.h Node.cpp -o Y
 The demo will prompt for an "enter" to proceed to different stages in the program. If it looks like the program is hung up, press enter. Keep an eye out for the line "Enter input for sim to send to device:". You don't want to press enter immediately here, enter your own testing string, ie: "Hello please give me an A"
 
 To compile the click WIP code, run make in the click directory
+To run it:
+
+
+RatedToDevice.click (RatedFromDevice.click) in_mac=ab:cd:ef out_mac=ef:cd:ab dev=veth1 (veth4)
+MITM.click in_mac1=ab:cd:ef out_mac1=ef:cd:ab dev1=veth2 in_mac2=ba:cd:ef out_mac2=fe:cd:ab dev2=veth3
 
 KNOWN BUGS
 Occasionally, the AES decryption will terminate part way through the string. The encryption of "Hello please give me an A" may decrypt to "Hello ple" or "Hello please giv" or something similar. This happens about 1/20 tests (eyeball, not actual statistical analysis), presumably due to casting and moving the AES encrypted data around and generating a terminating character by mistake somewhere.
