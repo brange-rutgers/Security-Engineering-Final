@@ -1,5 +1,6 @@
 # Security-Engineering-Final
 Welcome to the Rutgers 2016 Security Engineering final project.
+The source code is available at https://github.com/brange-rutgers/Security-Engineering-Final
 
 In this project we implemented a software simulation of a man in the middle attack on the communication between a SIM card and device, assuming that the MITM had access to read, modify, and block packets in either direction.
 
